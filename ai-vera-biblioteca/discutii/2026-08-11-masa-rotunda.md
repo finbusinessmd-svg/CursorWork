@@ -59,4 +59,19 @@ Echipa prezentă.
 ### Update fapte Interpol
 - Țara sursă (NCB): **Moldova** `[NARATIVĂ-ROBERT]`
 - Nr. Red Notice: **necunoscut** → prioritate: cerere **access** la CCF + căutare în acte naționale a mențiunilor „urmărire internațională / Interpol / Red Notice / NCB”.
+
+## Tur 4 — Robert: cont CCF + „ați controlat Biblioteca?” + mii de foi
+
+### Întrebări
+- Ce cer pe portal? Datele mamei?
+- În cât timp răspund?
+- Ați controlat tot din Bibliotecă? Ce acte pentru prima etapă?
+- Marturii = mii de foi, nu știe unde sunt.
+
+### Răspunsuri echipă (consens)
+- Bibliotecă: **NU** controlată (inaccesibilă Cloud).
+- Cont CCF: pe datele **Verăi**; reprezentant cu împuternicire OK.
+- Prima cerere: **ACCESS** (nu deletion încă).
+- Termene: admisibilitate ≤1 lună; access ≤4 luni de la admisibilitate; deletion ≤9 luni.
+- Etapa 1 = 5–8 fișiere, **nu** mii de foi. Ghid: `ETAPA-1-MINIM-CCF.md`.
 EOF
