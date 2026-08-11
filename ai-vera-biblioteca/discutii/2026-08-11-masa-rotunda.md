@@ -74,4 +74,15 @@ Echipa prezentă.
 - Prima cerere: **ACCESS** (nu deletion încă).
 - Termene: admisibilitate ≤1 lună; access ≤4 luni de la admisibilitate; deletion ≤9 luni.
 - Etapa 1 = 5–8 fișiere, **nu** mii de foi. Ghid: `ETAPA-1-MINIM-CCF.md`.
+
+## Tur 5 — Robert: zero documente Interpol; face cont portal
+
+### Decizie Robert
+- Nu există niciun document / informație de la Interpol în posesie.
+- Va crea cont pe portalul CCF și așteaptă ce iese (strategie **ACCESS first** — confirmată de echipă).
+
+### Poziție echipă
+- Corect. Fără nr. Notice / hârtie Interpol, access e singura cale oficială de a afla ce e înregistrat.
+- Până la răspuns CCF: **pauză pe deletion**; local poate căuta doar pașaport + împuternicire.
+- Când vine răspunsul CCF → regrupare echipă (Alexandru duce interpretarea).
 EOF
