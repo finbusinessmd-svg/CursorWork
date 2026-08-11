@@ -85,4 +85,18 @@ Echipa prezentă.
 - Corect. Fără nr. Notice / hârtie Interpol, access e singura cale oficială de a afla ce e înregistrat.
 - Până la răspuns CCF: **pauză pe deletion**; local poate căuta doar pașaport + împuternicire.
 - Când vine răspunsul CCF → regrupare echipă (Alexandru duce interpretarea).
+
+## Tur 6 — Robert: fără notar; Vera e în căutare
+
+### Problemă
+- Nu poate obține împuternicire notarială de la Vera (risc arest dacă apare la contact/notar).
+- Întreabă ce alternativă există.
+
+### Răspuns echipă (pe regulile CCF 2026 + Portal User Guide)
+- Regula oficială cere **power of attorney semnată de applicant**, NU spune explicit „notar”.
+- Reprezentantul poate fi **membru de familie** (nu obligatoriu avocat).
+- Există **template CCF** pe portal; sau model propriu — semnat de Vera.
+- Alternativa cea mai sigură: **Vera depune singură ACCESS** pe portal (online), fără notar și fără apariție fizică în MD.
+- CCF: cererea e confidențială; **nu** comunică NCB-urilor locația applicantului / reprezentantului.
+- Interzis / inutil: falsuri, „împuterniciri” nesemnate de Vera, apariție la notar în Moldova.
 EOF
