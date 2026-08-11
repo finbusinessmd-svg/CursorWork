@@ -40,4 +40,23 @@ Echipa prezentă.
 2. Convenție denumire PDF+MD.
 3. Index pe roluri / tipuri de acte.
 4. Așteptare: locația corpusului real + 5–10 acte prioritare.
+
+## Tur 3 — Robert: path local + Moldova + „de ce nu ați căutat”
+
+### Răspunsuri Robert
+1. Bibliotecă: `D:\Vera 2026\Vera AI Biblioteca 2026`
+2. **Nu** are număr Red Notice. **Moldova** a cerut.
+3. Cere verificare din nou în Bibliotecă; crede că datele s-au împărțit Cloud/local; cere unificare.
+
+### Verificare tehnică (Director)
+- Agentul Cloud rulează pe Linux; repo montat = doar `github.com/finbusinessmd-svg/cursorwork`.
+- `D:\` **nu e accesibil** (nu e mount, nu e în GitHub).
+- Căutare pe tot mediul: **zero** corpus Vera (PDF/marturii).
+- Singurul repo GitHub al userului vizibil aici: `CursorWork`.
+- Agent anterior „Descriere atac raider”: narativă familie/raider, **fără** fișiere Bibliotecă. Recuperat în `NARATIVA-RECUPERATA-RAIDER.md`.
+- Clarificare salvată: `ACCES-BIBLIOTECA.md`.
+
+### Update fapte Interpol
+- Țara sursă (NCB): **Moldova** `[NARATIVĂ-ROBERT]`
+- Nr. Red Notice: **necunoscut** → prioritate: cerere **access** la CCF + căutare în acte naționale a mențiunilor „urmărire internațională / Interpol / Red Notice / NCB”.
 EOF

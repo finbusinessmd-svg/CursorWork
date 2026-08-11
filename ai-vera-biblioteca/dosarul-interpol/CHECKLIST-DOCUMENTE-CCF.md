@@ -41,7 +41,7 @@ status_ocr: ok|partial|lipsă
 | A5 | Cerere: access și/sau correction/deletion | EN (PDF/DOCX) | LIPSĂ | prin portal CCF |
 | A6 | Summary of arguments (max ~10 pagini — verificare reguli curente) | EN | LIPSĂ | Alexandru |
 | A7 | Listă anexe (numerotate, max ~20 — verificare reguli curente) | MD | LIPSĂ | |
-| A8 | Identificatori Interpol dacă există (nr. Red Notice, Diffusion, țara sursă, date) | MD | LIPSĂ | |
+| A8 | Identificatori Interpol (nr. Red Notice, Diffusion, țara sursă, date) | MD | PARȚIAL | Țară sursă: **Moldova** (spus de Robert). Nr. Red Notice: **necunoscut** → cerere access CCF + căutare în acte naționale |
 
 ## B. Acte naționale pe fond (prioritate maximă pentru Red Notice)
 
