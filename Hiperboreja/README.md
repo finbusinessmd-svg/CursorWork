@@ -1,29 +1,21 @@
 # Hiperboreja — arhivă site (hiperboreja.ru)
 
-Editura **Гиперборея**. Arhivă publică salvată pe 14 august 2026, înainte de expirarea hostingului.
+Editura **Гиперборея**. Arhivă publică, 14 august 2026. Site ~10 ani.
 
-**Citește mai întâi:** [ANALIZA.md](ANALIZA.md)
+**Citește:** [ANALIZA.md](ANALIZA.md) · [COPIERE-PE-WINDOWS.md](COPIERE-PE-WINDOWS.md) · [content/COMENTARII-SI-IMAGINI.md](content/COMENTARII-SI-IMAGINI.md)
 
-**Vezi catalogul:** deschide `preview/index.html` în browser.
+**Catalog:** deschide `preview/index.html` în browser.
 
-## Copiere pe Windows
+## Copiere → D:\Hiperboreja
 
-Descarcă acest folder și pune-l în:
+Descarcă ZIP-ul și extrage-l în `D:\Hiperboreja`. Din cloud nu se poate scrie direct pe discul D:.
 
-`D:\Hiperboreja`
+## Ce este aici (pentru site-ul nou)
 
-## Contacte de pe site
-
-- Telefon: +7 903-148-53-56
-- Email: giperboreja8@rambler.ru
-- VK: https://vk.com/club3484987
-
-## Ce este aici
-
-- `content/books/` — anotații, ISBN, prețuri (hârtie + ebook)
 - `content/covers/` — 46 coperți
-- `content/blog/` — blog + poezii
-- `archive/extracted/catalog_clean.json` — catalog structurat, 23 titluri
-- `archive/raw-html.tar.gz` — paginile HTML publice
+- `content/images/` — 127 imagini de pe site (articole + catalog)
+- `content/books/` — anotațiile cărților (ISBN, preț, text)
+- `content/blog/` — eseuri + poezii + calea imaginii de articol
+- `preview/index.html` — catalog vizual
 
-Nu include baza de date Joomla și nu include fișierele PDF/EPUB vândute (nu erau publice).
+PDF-urile nu erau pe site; se trimiteau pe email după plată. Comentariile de vizitatori nu erau activate pe pagini (doar VK Like).

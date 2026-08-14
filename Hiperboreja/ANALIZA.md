@@ -1,6 +1,6 @@
 # Analiza site-ului hiperboreja.ru
 
-Data arhivei: 14 august 2026. Site-ul era încă online. Hostingul și domeniul expiră a doua zi.
+Data arhivei: 14 august 2026. Site-ul era încă online. Hostingul și domeniul expiră a doua zi. Site-ul are circa **10 ani** (Joomla 2.5 / VirtueMart, ~2014).
 
 ## Ce este site-ul
 
@@ -41,7 +41,8 @@ Fără parolă la cPanel/Joomla admin **nu există dump MySQL**. Am salvat tot c
 | Articole de blog | ~13 eseuri | `content/blog/` |
 | Poezii (СТИХИ) | ~22 | `content/blog/` |
 | Pagini despre / plată | da | `content/pages/` |
-| Imagini homepage / slider | da | `content/site-images/` |
+| Toate imaginile publice (articole, slider, thumbs) | 127 fișiere | `content/images/` |
+| Comentarii vizitatori (K2) | nu existau pe site (doar VK Like) | vezi `content/COMENTARII-SI-IMAGINI.md` |
 | HTML brut al paginilor publice | arhivă | `archive/raw-html.tar.gz` |
 | Previzualizare catalog | 23 coperți | `preview/index.html` |
 
@@ -57,7 +58,7 @@ Acestea dispar odată cu hostingul, dacă firma nu le dă:
 
 1. **Baza de date MySQL** — comenzi, clienți, parole, stoc
 2. **Lista AcyMailing** — abonați la newsletter
-3. **Fișierele ebook** (PDF/EPUB) — nu sunt publice; se trimiteau pe email după plată. **Nu există niciun `.pdf` pe site.**
+3. **Fișierele ebook** (PDF/EPUB) — confirmare de la autor: **nu au fost puse pe site**. Se trimiteau **manual pe email după achitare**. Nu există niciun `.pdf` de descărcat de pe web. Păstrează PDF-urile de pe discul tău pentru site-ul nou.
 4. **Media din `/administrator/`** — fișiere nelegate în pagini publice
 5. **Logouri / șablon sursă** — doar CSS compilat T3
 
@@ -105,7 +106,7 @@ Cost față de 120–130 €/an:
 
 ## Structura arhivei (echivalentul `D:\Hiperboreja`)
 
-În acest mediu Linux arhiva este folderul `Hiperboreja/` din repository. Descarcă ZIP-ul branch-ului și extrage-l în `D:\Hiperboreja`.
+În acest mediu Linux arhiva este folderul `Hiperboreja/` din repository. Descarcă ZIP-ul `Hiperboreja.zip` și extrage-l în `D:\Hiperboreja`. Din cloud nu se scrie direct pe discul D:.
 
 ```
 Hiperboreja/
