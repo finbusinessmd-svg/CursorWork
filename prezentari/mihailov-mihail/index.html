@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mihailov Mihail — fratele care a pus lacătul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,650;0,9..144,700;1,9..144,400;1,9..144,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #12100e;
+      --bg-2: #1b1814;
+      --bg-3: #242019;
+      --ink: #f3eadc;
+      --ink-soft: #cfc4b3;
+      --ink-dim: #9a9083;
+      --paper: #efe4d0;
+      --paper-2: #e4d6bc;
+      --paper-ink: #231e18;
+      --blood: #c45a48;
+      --blood-deep: #8e3a30;
+      --brass: #d4b483;
+      --brass-dim: #8c7350;
+      --sage: #7f9b76;
+      --slate: #7d8b99;
+      --amber: #d4a54a;
+      --line: rgba(212, 180, 131, 0.28);
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+      --serif: "Fraunces", "Palatino Linotype", Palatino, Georgia, serif;
+      --sans: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: var(--bg); color: var(--ink); }
+    body {
+      font-family: var(--sans);
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; z-index: 80;
+      opacity: 0.07;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.9'/></svg>");
+    }
+
+    .deck { height: 100%; width: 100%; position: relative; }
+    .slide {
+      position: absolute; inset: 0;
+      display: none;
+      padding: 4.6vh 5.2vw 8.4vh;
+      background:
+        radial-gradient(1200px 600px at 12% -10%, rgba(212,180,131,.07), transparent 55%),
+        radial-gradient(900px 500px at 100% 110%, rgba(142,58,48,.12), transparent 50%),
+        var(--bg);
+      overflow: hidden;
+    }
+    .slide.is-on { display: flex; flex-direction: column; }
+    .slide.is-on .rise { animation: rise .62s cubic-bezier(.2,.7,.2,1) both; }
+    .slide.is-on .rise:nth-child(2) { animation-delay: .06s; }
+    .slide.is-on .rise:nth-child(3) { animation-delay: .12s; }
+    .slide.is-on .rise:nth-child(4) { animation-delay: .18s; }
+    .slide.is-on .rise:nth-child(5) { animation-delay: .24s; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: .7rem;
+    }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 650; letter-spacing: -.02em; }
+    h1 { font-size: clamp(2.6rem, 6.4vw, 5.6rem); line-height: .92; }
+    h2 { font-size: clamp(1.7rem, 3.4vw, 2.7rem); line-height: 1.12; }
+    h3 { font-size: clamp(1.15rem, 1.8vw, 1.45rem); font-weight: 650; }
+    p, li { font-size: clamp(.95rem, 1.15vw, 1.12rem); line-height: 1.55; color: var(--ink-soft); }
+    .lead { font-family: var(--serif); font-size: clamp(1.15rem, 1.7vw, 1.45rem); line-height: 1.45; color: var(--ink); font-weight: 400; max-width: 42rem; }
+
+    .topbar {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 1.4rem; gap: 1rem;
+    }
+    .topbar .meta { font-family: var(--mono); font-size: 11px; color: var(--ink-dim); letter-spacing: .08em; }
+
+    .tag {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+      text-transform: uppercase; padding: .28rem .55rem; border-radius: 999px;
+      border: 1px solid currentColor; font-weight: 600; white-space: nowrap;
+    }
+    .tag-fapt { color: #b7d4ae; background: rgba(127,155,118,.18); }
+    .tag-aleg { color: #b4c4d4; background: rgba(125,139,153,.18); }
+    .tag-lie { color: #f0a090; background: rgba(196,90,72,.2); }
+    .tag-check { color: #e8c56a; background: rgba(212,165,74,.16); }
+    .tag-ded { color: #e2c79a; background: rgba(212,180,131,.16); }
+
+    .grid-2 { display: grid; grid-template-columns: 1.15fr .85fr; gap: 2.2rem; align-items: start; flex: 1; min-height: 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: .85rem; }
+    .cols { display: grid; gap: 1rem; }
+    .fill { flex: 1; min-height: 0; }
+
+    .paper {
+      background: linear-gradient(180deg, var(--paper), var(--paper-2));
+      color: var(--paper-ink);
+      padding: 1.15rem 1.25rem;
+      border-radius: 4px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .paper p, .paper li { color: #3a3228; }
+    .paper::after {
+      content: "";
+      position: absolute; inset: 8px; border: 1px solid rgba(35,30,24,.12); pointer-events: none;
+    }
+    .quote {
+      font-family: var(--serif); font-style: italic; font-size: 1.22rem; line-height: 1.4; color: var(--ink);
+    }
+
+    .node {
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: .85rem 1rem;
+      min-width: 0;
+    }
+    .node strong { display: block; font-family: var(--serif); font-size: 1.05rem; color: var(--ink); margin-bottom: .2rem; }
+    .node span { font-size: .82rem; color: var(--ink-dim); display: block; line-height: 1.4; }
+    .node.hot { border-color: rgba(196,90,72,.55); background: linear-gradient(180deg, #2a1c18, #1d1613); }
+    .node.gold { border-color: rgba(212,180,131,.5); }
+
+    .chain {
+      display: flex; align-items: stretch; gap: .55rem; flex-wrap: wrap;
+    }
+    .chain .node { flex: 1 1 120px; min-width: 110px; }
+    .arr {
+      align-self: center;
+      color: var(--brass);
+      font-size: 1.35rem;
+      flex: 0 0 auto;
+      line-height: 1;
+    }
+
+    .beat {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .8rem; margin-top: 1rem;
+    }
+    .beat article {
+      border-top: 2px solid var(--line); padding-top: .7rem;
+    }
+    .beat h4 {
+      font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--brass); margin-bottom: .4rem; font-weight: 600;
+    }
+    .beat p { font-size: .92rem; color: var(--ink-soft); }
+
+    .nav {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .7rem 1.4rem .85rem;
+      background: linear-gradient(180deg, transparent, rgba(18,16,14,.92) 40%);
+    }
+    .nav-btn {
+      appearance: none; border: 1px solid var(--line); background: var(--bg-2);
+      color: var(--ink); width: 42px; height: 42px; border-radius: 50%;
+      cursor: pointer; font-size: 1.1rem;
+    }
+    .nav-btn:hover { border-color: var(--brass); color: var(--brass); }
+    .nav-center { display: flex; flex-direction: column; align-items: center; gap: .25rem; }
+    .nav-title { font-family: var(--mono); font-size: 11px; color: var(--ink-dim); letter-spacing: .08em; }
+    .progress { width: min(42vw, 420px); height: 2px; background: #2e2a24; border-radius: 2px; overflow: hidden; }
+    .progress > i { display: block; height: 100%; width: 0; background: var(--brass); }
+
+    .dots {
+      position: fixed; right: 14px; top: 50%; transform: translateY(-50%);
+      z-index: 40; display: flex; flex-direction: column; gap: 7px;
+    }
+    .dots button {
+      width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--brass-dim);
+      background: transparent; cursor: pointer; padding: 0;
+    }
+    .dots button.on { background: var(--brass); border-color: var(--brass); }
+
+    .hint {
+      font-family: var(--mono); font-size: 11px; color: var(--ink-dim); letter-spacing: .08em;
+    }
+
+    /* Cover */
+    .cover { justify-content: flex-end; padding-bottom: 11vh; }
+    .cover h1 { max-width: 14ch; }
+    .cover .sub {
+      margin-top: 1.2rem; max-width: 34rem;
+      font-family: var(--serif); font-size: clamp(1.15rem, 2vw, 1.5rem);
+      color: var(--ink-soft); font-weight: 400; line-height: 1.4;
+    }
+    .lock-art {
+      position: absolute; right: 7vw; top: 16vh; width: min(38vw, 460px);
+      opacity: .92; pointer-events: none;
+    }
+
+    /* Timeline */
+    .tl { display: grid; grid-template-columns: 7.2rem 1fr; gap: .55rem 1.1rem; position: relative; }
+    .tl::before {
+      content: ""; position: absolute; left: 7.2rem; top: .3rem; bottom: .3rem; width: 1px;
+      background: linear-gradient(var(--brass), transparent);
+    }
+    .tl-date {
+      font-family: var(--mono); font-size: 12px; color: var(--brass); text-align: right; padding-top: .15rem;
+    }
+    .tl-card { background: var(--bg-3); border: 1px solid var(--line); border-radius: 5px; padding: .55rem .8rem .6rem; }
+    .tl-card b { color: var(--ink); font-weight: 650; }
+    .tl-card p { font-size: .86rem; margin-top: .15rem; }
+
+    /* Contrast rows */
+    .vs { display: grid; grid-template-columns: 1fr auto 1fr; gap: .7rem; align-items: stretch; margin-bottom: .7rem; }
+    .vs .said, .vs .act { padding: .85rem 1rem; border-radius: 5px; }
+    .vs .said { background: #251a18; border: 1px solid rgba(196,90,72,.35); }
+    .vs .act { background: #172017; border: 1px solid rgba(127,155,118,.35); }
+    .vs .mid { align-self: center; font-family: var(--mono); font-size: 10px; color: var(--brass); letter-spacing: .12em; writing-mode: vertical-rl; transform: rotate(180deg); }
+
+    /* Stats */
+    .stat {
+      background: var(--bg-3); border: 1px solid var(--line); border-radius: 6px;
+      padding: 1rem 1.05rem 1.1rem; display: flex; flex-direction: column; min-height: 150px;
+    }
+    .stat .num {
+      font-family: var(--serif); font-size: clamp(1.8rem, 3.4vw, 2.7rem); line-height: 1; color: var(--ink);
+      letter-spacing: -.03em; margin: .35rem 0 .55rem;
+    }
+    .stat p { font-size: .9rem; }
+
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .split.gap-lg { gap: 2rem; }
+    .muted { color: var(--ink-dim); }
+    .ink { color: var(--ink); }
+    .small { font-size: .86rem; }
+    .mb { margin-bottom: .85rem; }
+    .mt { margin-top: 1rem; }
+    .story { max-width: 62rem; }
+    .story p + p { margin-top: .7rem; }
+
+    .doc {
+      display: flex; align-items: flex-start; gap: .7rem;
+      border: 1px dashed var(--line); padding: .7rem .8rem; border-radius: 4px;
+    }
+    .doc i {
+      font-family: var(--mono); font-style: normal; font-size: 11px; color: var(--brass);
+      min-width: 3.4rem; padding-top: .15rem;
+    }
+
+    .tri-wrap { position: relative; height: 100%; min-height: 320px; }
+    .person {
+      position: absolute; width: min(28%, 250px); text-align: center;
+    }
+    .person .ava {
+      width: 72px; height: 72px; margin: 0 auto .55rem; border-radius: 50%;
+      border: 1px solid var(--brass); display: grid; place-items: center;
+      font-family: var(--serif); font-size: 1.5rem; color: var(--brass); background: var(--bg-2);
+    }
+    .person.vera { left: 6%; top: 8%; }
+    .person.mov { right: 6%; top: 8%; }
+    .person.mih { left: 50%; bottom: 4%; transform: translateX(-50%); width: min(36%, 300px); }
+    .person.mih .ava { width: 88px; height: 88px; border-width: 2px; color: var(--blood); border-color: var(--blood); }
+
+    svg.tri-lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .edge-lab {
+      position: absolute; font-family: var(--mono); font-size: 11px; color: var(--brass);
+      letter-spacing: .04em; max-width: 16rem; line-height: 1.35; text-align: center;
+    }
+
+    .legend { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+
+    .scene-day {
+      font-family: var(--serif); font-size: clamp(4rem, 10vw, 8rem); line-height: .8;
+      color: var(--ink); letter-spacing: -.04em;
+    }
+    .scene-day span { display: block; font-size: .22em; letter-spacing: .18em; font-family: var(--mono); color: var(--brass); margin-bottom: .4rem; }
+
+    .conseq { min-height: 210px; }
+    .conseq h3 { margin: .4rem 0 .5rem; }
+    .ear {
+      font-family: var(--serif); font-size: clamp(1.15rem, 1.9vw, 1.45rem);
+      line-height: 1.35; color: var(--ink); padding: .85rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .ear:first-child { border-top: 1px solid var(--line); }
+
+    @media (max-width: 980px) {
+      .grid-2, .grid-3, .grid-4, .beat, .split, .vs { grid-template-columns: 1fr; }
+      .vs .mid { writing-mode: initial; transform: none; text-align: center; }
+      .lock-art { opacity: .18; right: -8vw; }
+      .tl { grid-template-columns: 5.4rem 1fr; }
+      .person { position: relative; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; transform: none; width: 100%; margin-bottom: 1rem; }
+      svg.tri-lines, .edge-lab { display: none; }
+    }
+    @media (max-height: 900px) {
+      .slide { padding: 3.2vh 4.4vw 7.6vh; }
+      .tl { gap: .32rem 1rem; }
+      .tl-card { padding: .38rem .7rem .42rem; }
+      .tl-card p { font-size: .8rem; }
+      .stat { min-height: 0; padding: .75rem .9rem; }
+      .stat .num { font-size: clamp(1.5rem, 2.8vw, 2.2rem); }
+    }
+
+    body.print-all { overflow: auto; }
+    body.print-all .slide { position: relative; display: flex !important; min-height: 100vh; page-break-after: always; }
+    body.print-all .nav, body.print-all .dots, body.print-all::before { display: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide.is-on .rise { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck" id="deck" aria-live="polite">
+
+    <!-- 1 COPERTĂ -->
+    <section class="slide cover" data-title="Copertă">
+      <svg class="lock-art" viewBox="0 0 420 420" fill="none" aria-hidden="true">
+        <circle cx="210" cy="210" r="196" stroke="#d4b483" stroke-opacity=".18" />
+        <circle cx="210" cy="210" r="150" stroke="#d4b483" stroke-opacity=".12" />
+        <path d="M145 188v-38c0-36 29-66 65-66s65 30 65 66v38" stroke="#c45a48" stroke-width="10" stroke-linecap="round"/>
+        <rect x="118" y="186" width="184" height="148" rx="18" stroke="#efe4d0" stroke-width="8"/>
+        <circle cx="210" cy="250" r="16" stroke="#d4b483" stroke-width="6"/>
+        <path d="M210 266v34" stroke="#d4b483" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+      <div class="rise">
+        <p class="kicker">Dosar de caracter · 04.09.2026 · nu e sentință</p>
+        <h1>Mihailov Mihail</h1>
+        <div style="width:4.5rem;height:2px;background:var(--brass);margin:1.15rem 0 .2rem;opacity:.85"></div>
+        <p class="sub">Fratele care a pus lacătul. Semna pe procură, a cumpărat firma goală, a cerut sechestrul — apoi a spus că nu știa.</p>
+        <p class="hint mt">Pentru Robert · o privire, nu un Excel · → sau Space</p>
+      </div>
+    </section>
+
+    <!-- 2 CINE E -->
+    <section class="slide" data-title="Cine e">
+      <div class="topbar rise">
+        <p class="kicker">01 · Personajul</p>
+        <p class="meta">Mihailov Mihail · fratele Verei</p>
+      </div>
+      <div class="grid-2 fill">
+        <div class="rise">
+          <h2 class="mb">Un om din familie, pe acte când trebuie mutat ceva greu.</h2>
+          <div class="story">
+            <p>Nu e „patronul din poză”. E fratele. Apare când trebuie vândută o casă, cumpărată o firmă, sau cerut un sechestru. Apoi, în declarații, se face mic: nu știa, a fost împins, avea doar 10%.</p>
+            <p>Pe scurt, pentru un om care nu e avocat: <span class="ink">el e cheia</span>. Nu tot palatul. Cheia. Cu ea s-a închis ușa firmei Verei.</p>
+          </div>
+          <div class="legend">
+            <span class="tag tag-fapt">Fapt</span>
+            <span class="tag tag-aleg">Alegație</span>
+            <span class="tag tag-lie">Minciună dovedită</span>
+            <span class="tag tag-check">De verificat</span>
+            <span class="tag tag-ded">Deducție</span>
+          </div>
+        </div>
+        <div class="paper rise">
+          <p class="kicker" style="color:#8c7350">Fișă scurtă</p>
+          <h3 style="margin:.2rem 0 .8rem">Ce roluri ține, pe o frază</h3>
+          <ul style="padding-left:1.1rem; display:grid; gap:.55rem">
+            <li><b>2011</b> — semnează vânzări Ialtop cu procura lui Movilă (nr. 8419). Ex.: casa Mazililor.</li>
+            <li><b>28.03.2012</b> — cumpără 100% Ialtop, ~40.420 lei, după ce imobilele grele ieșiseră.</li>
+            <li><b>Energomigrup</b> — apare pe dispoziții; pe declarații: inginer.</li>
+            <li><b>13–14.02.2014</b> — cere judecata; a doua zi e sechestru pe active (MAV / PECO).</li>
+            <li><b>23.09.2014</b> — audiere: contradicții față de acte (sursă tip LM33).</li>
+            <li><b>2018</b> — explicații la CA; la 13.07.2018 renunță la civil.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 TRIUNGHI -->
+    <section class="slide" data-title="Triunghiul">
+      <div class="topbar rise">
+        <p class="kicker">02 · Familie + afacere</p>
+        <p class="meta">Vera ↔ Mihailov ↔ Movilă</p>
+      </div>
+      <p class="lead rise mb">Nu e un război între străini. E un triunghi: sora, fratele, partenerul de afaceri. Banii și actele circulă între ei.</p>
+      <div class="fill tri-wrap rise">
+        <svg class="tri-lines" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+          <line x1="180" y1="90" x2="820" y2="90" stroke="#d4b483" stroke-opacity=".45" stroke-width="1.5"/>
+          <line x1="180" y1="90" x2="500" y2="430" stroke="#c45a48" stroke-opacity=".55" stroke-width="1.8"/>
+          <line x1="820" y1="90" x2="500" y2="430" stroke="#d4b483" stroke-opacity=".55" stroke-width="1.8"/>
+        </svg>
+        <div class="person vera">
+          <div class="ava">V</div>
+          <strong>Țurcanu Vera</strong>
+          <p class="small">Soră. Administrator / asociat Energomigrup. Ținta civil + penal.</p>
+        </div>
+        <div class="person mov">
+          <div class="ava">M</div>
+          <strong>Movilă Anatolie</strong>
+          <p class="small">Concubin / partener lung. Dă procura 8419. Revine pe 70% Ialtop în 2014. Fir Invest-Petrol.</p>
+        </div>
+        <div class="person mih">
+          <div class="ava">Mh</div>
+          <strong>Mihailov Mihail</strong>
+          <p class="small">Fratele. Semnatar, cumpărător, reclamant. Cheia dintre ei.</p>
+        </div>
+        <p class="edge-lab" style="left:50%; top:6%; transform:translateX(-50%)">aceeași familie de afaceri — nu trei străini</p>
+        <p class="edge-lab" style="left:14%; top:52%; transform:rotate(-52deg)">80% acțiuni 2012 · apoi sechestru pe Energo</p>
+        <p class="edge-lab" style="right:10%; top:52%; transform:rotate(52deg)">procură 8419 · 70% Ialtop 2014</p>
+      </div>
+    </section>
+
+    <!-- 4 TIMELINE -->
+    <section class="slide" data-title="Linia timpului">
+      <div class="topbar rise">
+        <p class="kicker">03 · 2011 → 2018</p>
+        <p class="meta">O linie, nu o listă uscată</p>
+      </div>
+      <div class="tl fill rise">
+        <div class="tl-date">2011</div>
+        <div class="tl-card"><b>Procura 8419 și vânzările</b><p>Mihailov semnează ca om al lui Movilă. Imobile Ialtop (ex. casa Mazililor) ies din firmă. Averea grea se mută <em>înainte</em> ca el să „cumpere” acțiunile.</p></div>
+        <div class="tl-date">28.03.2012</div>
+        <div class="tl-card"><b>100% Ialtop, 2 lei / acțiune</b><p>De la Energomigrup (Vera) 80% + Coșciug 20%. Total ~40.420 lei. Cumpără firma după ce casele nu mai sunt acolo.</p></div>
+        <div class="tl-date">13.02.2014</div>
+        <div class="tl-card"><b>Cerere de chemare în judecată</b><p>Mihailov deschide civilul. A doua zi nu e „poate”. E sechestru.</p></div>
+        <div class="tl-date">14.02.2014</div>
+        <div class="tl-card"><b>Sechestru — Judecătoria Botanica</b><p>Lacăt pe active: lanț MAV / PECO. Energomigrup rămâne fără aer. Nu scriem că judecătoarea e coruptă. Scriem ce s-a întâmplat și ce a urmat.</p></div>
+        <div class="tl-date">sf. feb. 2014</div>
+        <div class="tl-card"><b>Unchițești — combustibil</b><p><span class="tag tag-aleg">Alegație</span> &nbsp; Declarație Otel (apr. 2014): ar fi scos combustibil după intentarea acțiunii. Fapt pe declarație, nu condamnare.</p></div>
+        <div class="tl-date">2014</div>
+        <div class="tl-card"><b>Movilă revine pe 70% Ialtop</b><p>Acțiunile „cumpărate” de Mihailov nu stau pe loc. Puterea pe firmă se reasează. Dată exactă în lună: <span class="tag tag-check">de verificat</span></p></div>
+        <div class="tl-date">23.09.2014</div>
+        <div class="tl-card"><b>Audiere — contradicții</b><p>„Nu știam de procură” vs semnătura pe 8419. „10%” vs 100% pe Registru. Sursă tip LM33.</p></div>
+        <div class="tl-date">2018 → 13.07</div>
+        <div class="tl-card"><b>Explicații CA, apoi renunțare</b><p>„Impusă de soră” — contrast cu actele cu Movilă. După ani de presiune, Mihailov renunță la civil.</p></div>
+      </div>
+    </section>
+
+    <!-- 5 ÎNAINTE / DUPĂ -->
+    <section class="slide" data-title="Înainte / după 2012">
+      <div class="topbar rise">
+        <p class="kicker">04 · Schema 1 — avere vs hârtie</p>
+        <p class="meta">Ce a rămas în mână, ce a rămas pe Registru</p>
+      </div>
+      <div class="split gap-lg fill rise">
+        <div>
+          <p class="kicker mb">Înainte · 2011</p>
+          <h2 class="mb">Imobilele ies. Semnătura lui e pe ușa de ieșire.</h2>
+          <div class="chain mb">
+            <div class="node"><strong>Ialtop</strong><span>case, terenuri, avere grea — încă „în firmă”</span></div>
+            <span class="arr">→</span>
+            <div class="node hot"><strong>Mihailov</strong><span>semnează cu procura 8419 (Movilă)</span></div>
+            <span class="arr">→</span>
+            <div class="node"><strong>Cumpărători</strong><span>ex. casa Mazililor iese</span></div>
+          </div>
+          <p>Pe limba omului: cineva a luat mobilele din casă. Firma a rămas o cutie.</p>
+        </div>
+        <div>
+          <p class="kicker mb">După · 28.03.2012</p>
+          <h2 class="mb">El cumpără cutia. Pe bani de nimic.</h2>
+          <div class="chain mb">
+            <div class="node"><strong>Energomigrup</strong><span>Vera · 80%</span></div>
+            <span class="arr">+</span>
+            <div class="node"><strong>Coșciug</strong><span>20%</span></div>
+            <span class="arr">→</span>
+            <div class="node gold"><strong>Mihailov 100%</strong><span>2 lei / acțiune · ~40.420 lei</span></div>
+          </div>
+          <div class="paper">
+            <p><b>Ce înseamnă.</b> 100% din acțiuni nu e 100% din case. Casele plecaseră. El a cumpărat titlul. Averea grea, pe schema ulterioară, stă pe firul <b>MAV-Energ / PECO</b> — nu în buzunarul „Ialtop-ului gol”.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 CARD 1 -->
+    <section class="slide" data-title="Firma goală">
+      <div class="topbar rise">
+        <p class="kicker">05 · Card 1 · 28.03.2012</p>
+        <p class="meta"><span class="tag tag-fapt">Fapt</span> contract acțiuni</p>
+      </div>
+      <h2 class="rise mb">A cumpărat firma goală. Nu averea.</h2>
+      <div class="story rise">
+        <p>Imaginează o brutărie din care au scos cuptorul, vitrina și casa de marcat. Apoi cineva cumpără „brutăria” cu preț de chitanță. Asta e Ialtop la 28 martie 2012. Mihailov ia 100% din acțiuni: 80% de la Energomigrup (Vera), 20% de la Coșciug. Preț: <b class="ink">2 lei pe acțiune</b>, total cam <b class="ink">40.420 lei</b>. Nominalul era 10 lei. Nimeni nu plătește un sfert din nominal pe o comoară. Se plătește așa pe o coajă.</p>
+        <p>Fluxul e simplu: <b class="ink">Energomigrup + Coșciug → Mihailov</b>. Nu e o afacere de familie fericită. E mutarea titlului, după mutarea pietrelor.</p>
+      </div>
+      <div class="beat rise">
+        <article>
+          <h4>Ce a spus / scris</h4>
+          <p>Mai târziu, la audiere, vorbește de „10%” — nu de 100%. Povestea din gură e a unui om mic în firmă. Povestea din Registru e a stăpânului de hârtie.</p>
+        </article>
+        <article>
+          <h4>Ce arată actele</h4>
+          <p>Contract 28.03.2012: 100%. Preț ~40.420 lei. 2 lei vs 10 lei nominal. Imobilele grele: deja mutate în 2011, cu el pe procură.</p>
+        </article>
+        <article>
+          <h4>Ce înseamnă + consecințe</h4>
+          <p>El deține „firma” fără averea grea. Doi ani mai târziu, tot el cere lacătul pe ce mai mișca — PECO, lanț, aerul Energo. Vera rămâne cu datoria și cu ținta.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 7 CARD 2 -->
+    <section class="slide" data-title="Procura 8419">
+      <div class="topbar rise">
+        <p class="kicker">06 · Card 2 · 2011, apoi declarații</p>
+        <p class="meta"><span class="tag tag-lie">Minciună dovedită</span> contrast act vs gură</p>
+      </div>
+      <h2 class="rise mb">Înainte să fie „acționar 100%”, semna ca om al lui Movilă.</h2>
+      <div class="story rise">
+        <p>Procura nr. <b class="ink">8419</b>, de la Movilă Anatolie. Cu ea, Mihailov pune semnătura pe vânzări de imobile Ialtop — nu ca turist, ca mână care închide actul. Casa Mazililor e exemplul din dosar. Asta e 2011. El încă nu „cumpărase” firma. Era deja în cameră, cu pixul.</p>
+        <p>La audierea din 23.09.2014 (LM33), apare varianta: <i>nu știam de procură</i>. Un om care a semnat cu procura nu poate, în același univers, să n-o fi cunoscut. Aici nu e bănuială. E contrast.</p>
+      </div>
+      <div class="vs rise mt">
+        <div class="said">
+          <p class="kicker" style="color:#e08a7a">Ce a spus</p>
+          <p class="quote" style="font-size:1.15rem">„Nu știam de procură.”</p>
+          <p class="small mt">Audiere 23.09.2014 · LM33</p>
+        </div>
+        <div class="mid">versus</div>
+        <div class="act">
+          <p class="kicker" style="color:#7f9b76">Ce arată actul</p>
+          <p class="quote" style="font-size:1.15rem; color:#dce8d8">Semnătura lui, pe vânzări, cu procura 8419.</p>
+          <p class="small mt" style="color:#c9d4c4">2011 · imobile Ialtop · ex. casa Mazililor</p>
+        </div>
+      </div>
+      <p class="small muted rise mt">Consecință: dacă minte pe un punct atât de simplu (am semnat / n-am știut), restul declarațiilor se citesc cu ochiul deschis. Principiul, pe limba omului: instanța cântărește credibilitatea. Articol exact — de confirmat cu avocat.</p>
+    </section>
+
+    <!-- 8 CARD 3 SECHESTRU -->
+    <section class="slide" data-title="Sechestrul">
+      <div class="topbar rise">
+        <p class="kicker">07 · Card 3 · piesa centrală</p>
+        <p class="meta">13.02 → 14.02.2014 · Judecătoria Botanica</p>
+      </div>
+      <div class="grid-2 fill">
+        <div class="rise">
+          <p class="scene-day"><span>de la cerere la lacăt</span>1 zi</p>
+          <p class="lead mt">Nu e doar un proces pe hârtie — e un lacăt pe firmă.</p>
+        </div>
+        <div class="rise">
+          <p>13 februarie 2014. Mihailov depune cererea de chemare în judecată. Nu e o ceartă de familie la masă. E o cerere către instanță, cu măsuri care opresc mișcarea bunurilor.</p>
+          <p class="mt">14 februarie 2014. Instanța (Botanica) pune sechestru pe active — lanțul MAV, PECO-urile, ce ținea vânzarea de combustibil în viață. O zi. Firma nu-și mai poate vinde, muta, folosi liniștit bunurile. Greu de plătit credite. Greu de respirat.</p>
+        </div>
+      </div>
+      <div class="chain rise mt">
+        <div class="node hot"><strong>Mihailov</strong><span>cerere 13.02.2014</span></div>
+        <span class="arr">→</span>
+        <div class="node"><strong>Botanica</strong><span>încheiere sechestru 14.02</span></div>
+        <span class="arr">→</span>
+        <div class="node hot"><strong>Lacăt</strong><span>MAV / PECO / aerul Energo</span></div>
+        <span class="arr">→</span>
+        <div class="node"><strong>Urmare</strong><span>credite, presiune, cesiuni</span></div>
+      </div>
+      <div class="beat rise">
+        <article>
+          <h4>Fapt</h4>
+          <p>Cererea există. Sechestrul există. Data e o zi. Ce s-a blocat: activitatea, benzinăriile, posibilitatea de a plăti normal.</p>
+        </article>
+        <article>
+          <h4>Deducție · nu acuzație</h4>
+          <p>Dacă instanța a verificat temeinic pretenția — <span class="tag tag-check">de verificat</span> pe textul încheierii. Fără text, nu scriem „corupt”. Scriem viteza și efectul.</p>
+        </article>
+        <article>
+          <h4>Consecințe</h4>
+          <p>Energomigrup se oprește practic. Vera e închisă în firmă fără cheie. Urmează anii 2014–2018.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 9 CARD 4 MINCIUNI -->
+    <section class="slide" data-title="Minciună vs act">
+      <div class="topbar rise">
+        <p class="kicker">08 · Card 4 · trei mini-scene</p>
+        <p class="meta">Minciună = doar când actul bate gura</p>
+      </div>
+      <div class="vs rise">
+        <div class="said">
+          <span class="tag tag-lie">Minciună dovedită</span>
+          <p class="quote mt" style="font-size:1.08rem">„Am 10% din acțiuni.”</p>
+          <p class="small mt">Audiere 23.09.2014 · LM33</p>
+        </div>
+        <div class="mid">1</div>
+        <div class="act">
+          <span class="tag tag-fapt">Registru</span>
+          <p class="quote mt" style="font-size:1.08rem; color:#dce8d8">100% Ialtop, din 28.03.2012.</p>
+          <p class="small mt" style="color:#c9d4c4">De ce contează: un om care greșește de zece ori mărimea cotei nu e martor confuz — e martor care își alege mărimea.</p>
+        </div>
+      </div>
+      <div class="vs rise">
+        <div class="said">
+          <span class="tag tag-lie">Minciună dovedită</span>
+          <p class="quote mt" style="font-size:1.08rem">„Nu știam de procură.”</p>
+          <p class="small mt">Aceeași audiere</p>
+        </div>
+        <div class="mid">2</div>
+        <div class="act">
+          <span class="tag tag-fapt">Procură 8419</span>
+          <p class="quote mt" style="font-size:1.08rem; color:#dce8d8">A semnat vânzări Ialtop cu ea. 2011.</p>
+          <p class="small mt" style="color:#c9d4c4">De ce contează: neștiința nu stă pe aceeași pagină cu semnătura.</p>
+        </div>
+      </div>
+      <div class="vs rise">
+        <div class="said">
+          <span class="tag tag-lie">Minciună dovedită</span>
+          <p class="quote mt" style="font-size:1.08rem">„Impusă de soră.”</p>
+          <p class="small mt">Explicații CA, 2018</p>
+        </div>
+        <div class="mid">3</div>
+        <div class="act">
+          <span class="tag tag-fapt">Acte cu Movilă</span>
+          <p class="quote mt" style="font-size:1.08rem; color:#dce8d8">Pe procură și pe vânzări apare cu Movilă, nu ca victimă a sorei.</p>
+          <p class="small mt" style="color:#c9d4c4">De ce contează: mută vina pe Vera. Actele arată altă mână care i-a dat pixul.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 CARD 5 FLUX -->
+    <section class="slide" data-title="Flux după sechestru">
+      <div class="topbar rise">
+        <p class="kicker">09 · Card 5 · bani, active, putere</p>
+        <p class="meta">Nu „a dat în judecată”. A oprit oxigenul.</p>
+      </div>
+      <h2 class="rise mb">De la reclamant la firmă fără aer.</h2>
+      <div class="chain rise mb">
+        <div class="node hot"><strong>1. Mihailov</strong><span>reclamant civil</span></div>
+        <span class="arr">→</span>
+        <div class="node"><strong>2. Sechestru</strong><span>14.02.2014 Botanica</span></div>
+        <span class="arr">→</span>
+        <div class="node"><strong>3. Executor</strong><span>lacăt pe bunuri</span></div>
+        <span class="arr">→</span>
+        <div class="node hot"><strong>4. PECO / MAV</strong><span>presiune pe pompă</span></div>
+        <span class="arr">→</span>
+        <div class="node"><strong>5. Energo</strong><span>fără aer, credite</span></div>
+        <span class="arr">→</span>
+        <div class="node gold"><strong>6. Invest-Petrol</strong><span>cesiune / gaj — consecință</span></div>
+      </div>
+      <div class="grid-3 rise">
+        <div class="node">
+          <strong>Unde stau PECO-urile</strong>
+          <span>După mutări, pe <b style="color:var(--ink)">MAV-Energ</b>. Sechestrul nu e o etichetă pe un dosar. E pompă care nu mai e liberă.</span>
+        </div>
+        <div class="node">
+          <strong>Energomigrup</strong>
+          <span>Firma Verei. Sechestrul + presiunea o opresc practic. Fără vânzare liberă, creditul nu se plătește ca ieri.</span>
+        </div>
+        <div class="node">
+          <strong>Invest-Petrol</strong>
+          <span>Fir ulterior (cesiune bancă / gaj). Pe schemă ca <b style="color:var(--ink)">urmare a blocajului</b>, nu ca biografie lungă. [de completat] lanțul exact al cesiunii.</span>
+        </div>
+      </div>
+      <p class="small muted mt rise">Movilă revine pe 70% Ialtop în 2014 — titlul „cumpărat” de Mihailov nu e capăt de drum. E o stație.</p>
+    </section>
+
+    <!-- 11 UNCHIȚEȘTI + RENUNȚARE -->
+    <section class="slide" data-title="Unchițești și 2018">
+      <div class="topbar rise">
+        <p class="kicker">10 · Card 6 și 7</p>
+        <p class="meta">După lacăt · combustibil · apoi retragerea</p>
+      </div>
+      <div class="split fill rise">
+        <div>
+          <p class="kicker mb">Card 6 · feb. 2014</p>
+          <h2 class="mb">Unchițești: combustibilul, după cerere.</h2>
+          <p>Declarația Otel, aprilie 2014: la sfârșitul lui februarie 2014, Mihailov ar fi scos combustibil de la Unchițești. Adică <b class="ink">după</b> ce acțiunea era deja intentată (13.02) și sechestrul pus (14.02).</p>
+          <p class="mt"><span class="tag tag-aleg">Alegație</span> <span class="tag tag-fapt">fapt pe declarație</span> — nu condamnare. Nu inventăm sentință.</p>
+          <p class="mt">Pe limba omului: un frate cere judecății să închidă pompele, și un martor spune că tot el a luat combustibil imediat după. Moral, e greu de înghițit. Juridic: e o declarație de cântărit, nu un verdict. Anexă opțională.</p>
+        </div>
+        <div>
+          <p class="kicker mb">Card 7 · 13.07.2018</p>
+          <h2 class="mb">De ce un om care „a luptat ani” renunță?</h2>
+          <p>Din 2014 până în 2018 — presiune civilă. Apoi, pe firul cunoscut, Mihailov <b class="ink">renunță</b>. Un om convins că i s-a luat dreptatea nu aruncă procesul ca pe o hârtie folosită. Un om al cărui rol s-a terminat — da.</p>
+          <p class="mt"><span class="tag tag-ded">Deducție</span> 1: treaba (blocajul, mutările, presiunea) era făcută. Procesul nu mai trebuia câștigat, trebuia ținut.</p>
+          <p class="mt"><span class="tag tag-ded">Deducție</span> 2: explicația „impusă de soră” pregătește ieșirea — el iese, Vera rămâne ținta.</p>
+          <p class="mt small muted">Întrebarea rămâne deschisă. Motivul scris al renunțării: <span class="tag tag-check">de verificat</span> în actul de 13.07.2018.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 STATISTICI -->
+    <section class="slide" data-title="Cifre care dor">
+      <div class="topbar rise">
+        <p class="kicker">11 · Nu e Excel. Sunt prețuri și zile.</p>
+        <p class="meta">Fiecare cifră are o propoziție</p>
+      </div>
+      <div class="grid-3 fill rise">
+        <article class="stat">
+          <span class="tag tag-fapt">Preț</span>
+          <div class="num">~40.420 lei</div>
+          <p>Atât a costat „100% Ialtop” la 28.03.2012 — după ce casele ieșiseră.</p>
+        </article>
+        <article class="stat">
+          <span class="tag tag-fapt">Viteză</span>
+          <div class="num">1 zi</div>
+          <p>De la cerere (13.02) la sechestru (14.02). Lacătul nu a așteptat lunile procesului.</p>
+        </article>
+        <article class="stat">
+          <span class="tag tag-fapt">Cotație</span>
+          <div class="num">2 lei / 10</div>
+          <p>Preț pe acțiune versus nominal 10 lei. Se cumpără ieftin ce nu mai are carne.</p>
+        </article>
+        <article class="stat">
+          <span class="tag tag-lie">Contrast</span>
+          <div class="num">100% ≠ 10%</div>
+          <p>Pe Registru: tot. În declarație: o feliuță. Nu e greșeală de memorie. E altă poveste.</p>
+        </article>
+        <article class="stat">
+          <span class="tag tag-fapt">Durată</span>
+          <div class="num">2014 → 2018</div>
+          <p>Ani de civil pe gâtul firmei, până la renunțarea lui. Vera a stat în lacăt tot intervalul.</p>
+        </article>
+        <article class="stat">
+          <span class="tag tag-fapt">Procură</span>
+          <div class="num">8419</div>
+          <p>Numărul de pe actul cu care a semnat vânzări în 2011 — și pe care, în 2014, „nu-l știa”.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 13 VERA -->
+    <section class="slide" data-title="Pentru Vera">
+      <div class="topbar rise">
+        <p class="kicker">12 · Consecințe pe viață, firmă, libertate</p>
+        <p class="meta">Nu e un litigiu abstract</p>
+      </div>
+      <h2 class="rise mb">Fratele a întors cheia. Ea a rămas în cameră.</h2>
+      <div class="grid-3 fill rise">
+        <article class="paper conseq">
+          <span class="tag tag-fapt">Firma</span>
+          <h3>Energomigrup fără aer</h3>
+          <p>Sechestrul a oprit practic mișcarea. PECO-urile pe MAV-Energ nu mai sunt oxigen liber. Fără vânzare, creditul nu se stinge. Firma nu „așteaptă procesul”. Firma se sufocă în timpul lui.</p>
+        </article>
+        <article class="paper conseq">
+          <span class="tag tag-ded">Viața</span>
+          <h3>Patru ani, și familia pe acte contra ei</h3>
+          <p>2014–2018: presiune civilă. Fratele e reclamant. Partenerul (Movilă) e pe procură, apoi pe 70% Ialtop, apoi pe firul Invest-Petrol. Casa, masa, numele de familie — rupte în dosar.</p>
+        </article>
+        <article class="paper conseq">
+          <span class="tag tag-aleg">Libertatea</span>
+          <h3>Țintă civil + penal</h3>
+          <p>Pe schema de lucru, Vera e ținta. Civilul a fost lacătul. Penalul e umbra. Ce dosar, ce articol, ce stare — <span class="tag tag-check">de confirmat cu avocat</span>. Nu inventăm mandat. Spunem doar: lacătul de pe firmă nu e tot ce i s-a cerut.</p>
+        </article>
+      </div>
+      <p class="mt rise lead" style="font-size:1.2rem">Când el renunță în 2018, ea nu își ia firma înapoi ca dintr-un vis. Blocajul, cesiunile, datoriile — rămân.</p>
+    </section>
+
+    <!-- 14 ÎNCHIDERE -->
+    <section class="slide" data-title="La urechi">
+      <div class="topbar rise">
+        <p class="kicker">13 · Cinci fraze + ce pui la dosar</p>
+        <p class="meta">Pentru ureche, nu pentru tabel</p>
+      </div>
+      <div class="grid-2 fill">
+        <div class="rise">
+          <p class="ear">A cumpărat firma goală pe bani de nimic — apoi a cerut judecății să blocheze tot ce mai mișca.</p>
+          <p class="ear">În acte semna. În declarații „nu știa”.</p>
+          <p class="ear">Nu e doar fratele. E cheia care a închis ușa firmei.</p>
+          <p class="ear">O zi. De la cerere la sechestru. Atât i-a luat lacătul.</p>
+          <p class="ear">Când presiunea și-a făcut treaba, a renunțat. Firma nu și-a revenit.</p>
+        </div>
+        <div class="rise">
+          <h3 class="mb">Anexe pentru oameni, nu pentru raft</h3>
+          <div class="cols" style="gap:.55rem">
+            <div class="doc"><i>LM</i><p><b class="ink">Cererea 13.02.2014</b> — ce a cerut, cu ce măsuri.</p></div>
+            <div class="doc"><i>LM</i><p><b class="ink">Încheierea / dovezi sechestru 14.02.2014</b> — lacătul, pe hârtie de instanță.</p></div>
+            <div class="doc"><i>LM</i><p><b class="ink">Contract acțiuni 28.03.2012</b> — 100%, 2 lei, 40.420.</p></div>
+            <div class="doc"><i>8419</i><p><b class="ink">Procura + un contract semnat de el</b> — contrastul „nu știam”.</p></div>
+            <div class="doc"><i>LM33</i><p><b class="ink">PV audiere 23.09.2014</b> — 10% vs 100%, procura.</p></div>
+            <div class="doc"><i>2018</i><p><b class="ink">Explicația CA</b> + actul de renunțare 13.07.2018.</p></div>
+            <div class="doc"><i>opt.</i><p><b class="ink">Declarația Otel</b> — Unchițești, sf. februarie 2014.</p></div>
+          </div>
+          <p class="small muted mt">Și din pachetul cunoscut: LM08, LM33, LM56, LM62, LM113, LM175… — pune-le lângă slide, nu în locul poveștii.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="dots" id="dots" aria-hidden="true"></div>
+  <nav class="nav" aria-label="Navigare prezentare">
+    <button class="nav-btn" id="prev" type="button" aria-label="Înapoi">←</button>
+    <div class="nav-center">
+      <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+      <div class="nav-title" id="label">1 / 14</div>
+    </div>
+    <button class="nav-btn" id="next" type="button" aria-label="Înainte">→</button>
+  </nav>
+
+  <script>
+    (function () {
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const dots = document.getElementById("dots");
+      const bar = document.getElementById("bar");
+      const label = document.getElementById("label");
+      const n = slides.length;
+      let i = 0;
+
+      slides.forEach((_, idx) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.title = slides[idx].dataset.title || String(idx + 1);
+        b.addEventListener("click", () => go(idx));
+        dots.appendChild(b);
+      });
+
+      function go(to) {
+        i = (to + n) % n;
+        slides.forEach((s, k) => s.classList.toggle("is-on", k === i));
+        Array.from(dots.children).forEach((d, k) => d.classList.toggle("on", k === i));
+        bar.style.width = ((i + 1) / n * 100) + "%";
+        const title = slides[i].dataset.title || "";
+        label.textContent = (i + 1) + " / " + n + "  ·  " + title;
+        location.hash = String(i + 1);
+      }
+
+      document.getElementById("prev").addEventListener("click", () => go(i - 1));
+      document.getElementById("next").addEventListener("click", () => go(i + 1));
+
+      window.addEventListener("keydown", (e) => {
+        if (["ArrowRight", "PageDown", " ", "Enter"].includes(e.key)) { e.preventDefault(); go(i + 1); }
+        if (["ArrowLeft", "PageUp", "Backspace"].includes(e.key)) { e.preventDefault(); go(i - 1); }
+        if (e.key === "Home") go(0);
+        if (e.key === "End") go(n - 1);
+        if (e.key === "p" || e.key === "P") document.body.classList.toggle("print-all");
+      });
+
+      let x0 = null;
+      document.addEventListener("touchstart", (e) => { x0 = e.changedTouches[0].screenX; }, { passive: true });
+      document.addEventListener("touchend", (e) => {
+        if (x0 == null) return;
+        const dx = e.changedTouches[0].screenX - x0;
+        if (Math.abs(dx) > 50) go(i + (dx < 0 ? 1 : -1));
+        x0 = null;
+      }, { passive: true });
+
+      const fromHash = parseInt(location.hash.replace("#", ""), 10);
+      go(Number.isFinite(fromHash) && fromHash >= 1 ? fromHash - 1 : 0);
+    })();
+  </script>
+</body>
+</html>
