@@ -95,11 +95,11 @@
       text-transform: uppercase; padding: .28rem .55rem; border-radius: 999px;
       border: 1px solid currentColor; font-weight: 600; white-space: nowrap;
     }
-    .tag-fapt { color: var(--sage); background: rgba(127,155,118,.12); }
-    .tag-aleg { color: var(--slate); background: rgba(125,139,153,.12); }
-    .tag-lie { color: #e08a7a; background: rgba(196,90,72,.14); }
-    .tag-check { color: var(--amber); background: rgba(212,165,74,.12); }
-    .tag-ded { color: var(--brass); background: rgba(212,180,131,.1); }
+    .tag-fapt { color: #b7d4ae; background: rgba(127,155,118,.18); }
+    .tag-aleg { color: #b4c4d4; background: rgba(125,139,153,.18); }
+    .tag-lie { color: #f0a090; background: rgba(196,90,72,.2); }
+    .tag-check { color: #e8c56a; background: rgba(212,165,74,.16); }
+    .tag-ded { color: #e2c79a; background: rgba(212,180,131,.16); }
 
     .grid-2 { display: grid; grid-template-columns: 1.15fr .85fr; gap: 2.2rem; align-items: start; flex: 1; min-height: 0; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
@@ -139,7 +139,7 @@
     .chain {
       display: flex; align-items: stretch; gap: .55rem; flex-wrap: wrap;
     }
-    .chain .node { flex: 1; min-width: 140px; }
+    .chain .node { flex: 1 1 120px; min-width: 110px; }
     .arr {
       align-self: center;
       color: var(--brass);
@@ -299,6 +299,14 @@
       .person { position: relative; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; transform: none; width: 100%; margin-bottom: 1rem; }
       svg.tri-lines, .edge-lab { display: none; }
     }
+    @media (max-height: 900px) {
+      .slide { padding: 3.2vh 4.4vw 7.6vh; }
+      .tl { gap: .32rem 1rem; }
+      .tl-card { padding: .38rem .7rem .42rem; }
+      .tl-card p { font-size: .8rem; }
+      .stat { min-height: 0; padding: .75rem .9rem; }
+      .stat .num { font-size: clamp(1.5rem, 2.8vw, 2.2rem); }
+    }
 
     body.print-all { overflow: auto; }
     body.print-all .slide { position: relative; display: flex !important; min-height: 100vh; page-break-after: always; }
@@ -325,6 +333,7 @@
       <div class="rise">
         <p class="kicker">Dosar de caracter · 04.09.2026 · nu e sentință</p>
         <h1>Mihailov Mihail</h1>
+        <div style="width:4.5rem;height:2px;background:var(--brass);margin:1.15rem 0 .2rem;opacity:.85"></div>
         <p class="sub">Fratele care a pus lacătul. Semna pe procură, a cumpărat firma goală, a cerut sechestrul — apoi a spus că nu știa.</p>
         <p class="hint mt">Pentru Robert · o privire, nu un Excel · → sau Space</p>
       </div>
@@ -352,7 +361,7 @@
           </div>
         </div>
         <div class="paper rise">
-          <p class="kicker" style="color:#8c7350">Fişă scurtă</p>
+          <p class="kicker" style="color:#8c7350">Fișă scurtă</p>
           <h3 style="margin:.2rem 0 .8rem">Ce roluri ține, pe o frază</h3>
           <ul style="padding-left:1.1rem; display:grid; gap:.55rem">
             <li><b>2011</b> — semnează vânzări Ialtop cu procura lui Movilă (nr. 8419). Ex.: casa Mazililor.</li>
